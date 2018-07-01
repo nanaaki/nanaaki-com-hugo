@@ -1,0 +1,33 @@
+baseURL = "https://nanaaki.com/"
+languageCode = "ja"
+title = "nanaaki.com"
+
+[params]
+  name = "nanaaki"
+  description = ""
+  bio = "ok, nanaaki"
+  dateFormat = "2006/01/02"
+  iconFont = "mono-soctial"
+  logo = "images/avatar.png"
+  socialShare = true
+
+[Author]
+  name = "nanaaki"
+  website = "nanaaki.com"
+  twitter = "nanaaki_77th"
+  github = "nanaaki"
+
+[[menu.main]]
+  name = "Blog"
+  url = ""
+  weight = "1"
+
+[[menu.main]]
+  name = "About"
+  url = "page/about/"
+  weight = 3
+
+[[menu.main]]
+  name = "Tags"
+  url = "tags"
+  weight = 2
