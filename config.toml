@@ -1,5 +1,5 @@
 baseURL = "http://nanaaki.com/"
-languageCode = "ja"
+DefaultContentLanguage = "ja"
 title = "nanaaki.com"
 
 [params]
