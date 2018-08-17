@@ -4,9 +4,11 @@ date: 2018-08-17T11:41:14+09:00
 draft: flase
 ---
 
-[ななすとどん](https:mst.nanaaki.com) を立てました
+[ななすとどん](https://mst.nanaaki.com) を立てました
 
 昔立てたますとどんを立て直したが、何か全体的にやり直したのでメモ
+
+<!--more-->
 
 全体的な雰囲気
 
@@ -23,7 +25,7 @@ sendgridの設定とかは[https://cloud.google.com/compute/docs/tutorials/sendi
 適当にgcpのドキュメント読め。
 
 
-Compute Engineの1インスタンスで何も考えずdockerでやっていく感じ。インスタンスの種類は適当にUbuntuでいいんじゃない？
+Compute Engineの1インスタンスで何も考えずdockerでやっていく感じ。OSは適当にUbuntuでいいんじゃない？
 
 docker関連インストールとmastodonをcloneして取り敢えず何も考えずにdocker-compose buildしとく(キーとかdocker内で叩いて吐かせるので)
 
