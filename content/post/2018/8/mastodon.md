@@ -2,7 +2,7 @@
 title: "Mastodonとか建てたので適当にメモ"
 date: 2018-08-17T11:41:14+09:00
 draft: flase
----
+----
 
 [ななすとどん](https://mst.nanaaki.com) を立てました
 
