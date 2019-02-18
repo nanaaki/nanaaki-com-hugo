@@ -1,7 +1,7 @@
 var app = new Vue({
   el: '#app',
   data: {
-    base_url: "https:/nanaaki.com/ika.html?",
+    base_url: "https://nanaaki.com/ika.html?",
     message: location.search,
     equi:{
       head:{main:{code:'F', name:'-'},sub:[{code:'F', name:'-'},{code:'F', name:'-'},{code:'F', name:'-'}]},
