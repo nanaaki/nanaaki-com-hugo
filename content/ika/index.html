@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<script src="vue.js"></script>
+<head>
+<div id="app" :style="styles">
+
+<div>
+
+<div class="layout_box">
+<ul>
+  頭
+  <li><b>
+    <select v-model="equi.head.main">
+      <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
+    </select>
+  </b></li>
+  <li v-for="(item,index) in equi.head.sub">
+    <select v-model="equi.head.sub[index]">
+      <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
+    </select>
+  </li>
+</ul>
+</div>
+
+<div class="layout_box">
+<ul>
+  服
+  <li><b>
+    <select v-model="equi.body.main">
+      <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
+    </select>
+  </b></li>
+  <li v-for="(item,index) in equi.body.sub">
+    <select v-model="equi.body.sub[index]">
+      <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
+    </select>
+  </li>
+</ul>
+</div>
+
+<div class="layout_box">
+<ul>
+  靴
+  <li><b>
+    <select v-model="equi.leg.main">
+      <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
+    </select>
+  </b></li>
+  <li v-for="(item,index) in equi.leg.sub">
+    <select v-model="equi.leg.sub[index]">
+      <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
+    </select>
+  </li>
+</ul>
+</div>
+</div>
+
+<div>
+  <div class=layout_box_status>
+    <div>ギアコード<input id="copy_data" :value=exportEqui><button v-on:click=copy_url>copy</button></div>
+    <ul>
+      <li v-for="(val, key) in gps">
+        {{getGear(key).name}}-{{val}}
+      </li>
+    </ul>
+  </div>
+  <div class="layout_box_x2">
+    移動速度 試し打ちライン1本分
+    <div>ヒト状態速度{{getFloor((50/getStatus("5").middle)/60)+"秒"}}<div class=base_move_border><div class="move_hito"></div></div></div>
+    <div>イカ状態速度{{getFloor((50/getStatus("6").middle)/60)+"秒"}}<div class=base_move_border><div class="move_ika"></div></div></div>
+    <div>相手インク軽減 ヒト速度{{getFloor((50/getStatus("D").hito)/60)+"秒"}}<div class=base_move_border><div class="move_aite"></div></div></div>
+    <div>復活時間短縮{{getFloor(getStatus("A")/60)}}秒<div class=base_move><div class=respone></div></div></div>
+    <div>スパジャン短縮 待機:{{getFloor(getStatus("B").wait/60)}} + 滞空:{{getFloor(getStatus("B").jump/60)}}秒<div class=base_move><div class=jump_background_count><div class=jump_count></div></div></div></div>
+  </div>
+</div>
+
+<div>
+
+<div class="layout_box">
+<div>メインブキインク効率<div class="base"><div class="main_ink_buki_mid"></div></div></div>
+<div>サブブキインク効率
+  <div>
+    <div v-for="(val, key) in getStatus('2')">
+      {{val.name+":"+val.ink+"%"}}<div class="base"><div class="ink_buki_sub_base" v-bind:style="bombStyle(val,'gray','base')"><div class="ink_buki_sub" v-bind:style="bombStyle(val,'#3CB371','gp')">{{getFloor(val.ratio*val.ink)+"%"}}</div></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<div class="layout_box">
+  <div>インク回復速度 イカ {{getStatus("3").ika}}f, {{getFloor(getStatus("3").ika/60)}}秒<div class="base"><div class="main_ink_ika"></div></div></div>
+  <div>インク回復速度 ヒト {{getStatus("3").hito}}f,{{getFloor(getStatus("3").hito/60)}}秒<div class="base"><div class="main_ink_hito"></div></div></div>
+  <div>スペシャル増加量(180p時に必要p)<div class="base"><div class="special_ink">{{getFloor(180/getStatus("7"))}}/180</div></div></div>
+  <div>スペシャル減少量(100%時)<div class="base"><div class="special_ink_down">{{getFloor(1-getStatus("8"))*100}}%</div></div></div>
+  <div>スペシャル性能アップ(未実装)</div>
+</div>
+
+<div class="layout_box">
+  <div>ダメージ計算系</div>
+  <div>相手インク軽減 スリップダメージ
+    <ul>
+      <li>最大ダメージ量 : {{getFloor(getStatus("D").cap)}}</li>
+      <li>最大ダメージ到達時間 : {{getFloor((getStatus("D").cap/getStatus("D").slip)/60)}}秒</li>
+    </ul>
+    <div class="base"><div class="aite_ink"><div class="aite_ink_slip"></div></div></div>
+  </div>
+
+  <div>爆風ダメージ軽減(クイボ以外直撃は確定死)</div>
+  　<ul>
+　    <li>ジェットパック 近/遠:{{getFloor(50*(1-getStatus("E").special))}}/{{getFloor(30*(1-getStatus("E").special))}}</li>
+    　<li>クイックボム 直/近/遠:{{getFloor(60*(1-getStatus("E").quick))}}/{{getFloor(35*(1-getStatus("E").quick))}}/{{getFloor(25*(1-getStatus("E").quick))}}</li>
+    　<li>各種ボム 遠:{{getFloor(30*(1-getStatus("E").bomb))}}</li>
+　　</ul>
+</div>
+
+</div>
+
+<div class=layout_box>メイン性能アップ(未実装)</div>
+
+
+
+
+</div>
+<script src="main.js"></script>
+<style lang="css" scoped>
+    @import url('ika.css');
+</style>
+</html>
