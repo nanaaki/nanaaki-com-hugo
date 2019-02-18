@@ -1,6 +1,7 @@
 baseURL = "https://nanaaki.com/"
 DefaultContentLanguage = "ja"
 title = "nanaaki.com"
+googleAnalytics = "UA-50849473-1"
 
 [params]
   name = "nanaaki"
