@@ -135,9 +135,9 @@ var app = new Vue({
         '--jump-sum': (this.getStatus("B").wait/60+this.getStatus("B").jump/60)+"s",
         '--jump-wait-px': this.getFloor(150*(this.getStatus("B").wait/(this.getStatus("B").wait+this.getStatus("B").jump))*2)+"px",
         '--ink-buki-mid-width' : (buki_ink.mid*150)+"px",
-        '--ink-buki-mid-content' : "\""+this.getFloor(buki_ink.high*100)+"%\"",
+        '--ink-buki-mid-content' : "\""+this.getFloor(buki_ink.mid*100)+"%\"",
         '--ink-buki-high-width' : (buki_ink.high*150)+"px",
-        '--ink-buki-high-content' : "\""+this.getFloor(buki_ink.mid*100)+"%\"",
+        '--ink-buki-high-content' : "\""+this.getFloor(buki_ink.high*100)+"%\"",
         '--special-ink-width': 150*((180/special_ink)/180)+"px",
         '--special-ink-down-width': 150*(1-this.getStatus("8"))+"px"
       };
