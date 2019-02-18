@@ -1,7 +1,7 @@
 var app = new Vue({
   el: '#app',
   data: {
-    base_url: "https://nanaaki.com/ika.html?",
+    base_url: "https://nanaaki.com/ika/?",
     message: location.search,
     equi:{
       head:{main:{code:'F', name:'-'},sub:[{code:'F', name:'-'},{code:'F', name:'-'},{code:'F', name:'-'}]},
@@ -28,7 +28,7 @@ var app = new Vue({
             {code:'F', name:'-',
              calc:function(gp){return gp}},
             {code:'1', name:'メインインク性能',
-             calc:function(gp){return {'mid' :1.0-((0.99*gp)-(0.09*gp)**2)/(200/3), 'high':1.0-((0.99*gp)-(0.09*gp)**2)/(60)}} },
+             calc:function(gp){return {'mid' :1-0.45*(0.033*gp-0.00027*gp**2), 'high':1-0.5*(0.033*gp-0.00027*gp**2)**0.7369655942}} },
             {code:'2', name:'サブインク性能',
              calc:function(gp){
                return {
@@ -74,8 +74,9 @@ var app = new Vue({
              calc: undefined },
             {code:'D', name:'敵インク軽減',
              calc: function(gp){ return {
-               'slip': 0.3-0.15*(0.033*gp-0.00027*gp**2),
+               'slip': Math.floor((0.3-0.15*(0.033*gp-0.00027*gp**2))*10)/10,
                'cap' : 40-20*(0.033*gp-0.00027*gp**2),
+               'no_damage' : (39*((0.033*gp-0.00027*gp**2)**0.5849625007)),
                'hito': 0.24+0.48*(0.033*gp-0.00027*gp**2)}}},
             {code:'E', name:'爆風ダメージ軽減',
              calc: function(gp){ return {
@@ -134,7 +135,9 @@ var app = new Vue({
         '--jump-sum': (this.getStatus("B").wait/60+this.getStatus("B").jump/60)+"s",
         '--jump-wait-px': this.getFloor(150*(this.getStatus("B").wait/(this.getStatus("B").wait+this.getStatus("B").jump))*2)+"px",
         '--ink-buki-mid-width' : (buki_ink.mid*150)+"px",
-        '--ink-buki-mid-content' : "\""+this.getFloor(buki_ink.mid*100)+"%\"",
+        '--ink-buki-mid-content' : "\""+this.getFloor(buki_ink.high*100)+"%\"",
+        '--ink-buki-high-width' : (buki_ink.high*150)+"px",
+        '--ink-buki-high-content' : "\""+this.getFloor(buki_ink.mid*100)+"%\"",
         '--special-ink-width': 150*((180/special_ink)/180)+"px",
         '--special-ink-down-width': 150*(1-this.getStatus("8"))+"px"
       };

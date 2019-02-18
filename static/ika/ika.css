@@ -13,6 +13,8 @@
   --respone-count: 4s;
   --ink-buki-mid-width: 150px;
   --ink-buki-mid-content: "100.00%";
+  --ink-buki-high-width: 150px;
+  --ink-buki-high-content: "100.00%";
   --special-ink-width: 150px;
   --special-ink-down-width: 150px;
 }
@@ -93,6 +95,17 @@ ul, li {
 }
 .main_ink_buki_mid::after {
   content: var(--ink-buki-mid-content);
+}
+
+.main_ink_buki_high {
+  display: block;
+  background-color: #3CB371;
+  height: 25px;
+  width: var(--ink-buki-high-width);
+  content: "0%";
+}
+.main_ink_buki_high::after {
+  content: var(--ink-buki-high-content);
 }
 
 .special_ink {

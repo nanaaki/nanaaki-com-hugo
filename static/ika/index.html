@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="vue.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50849473-1"></script>
@@ -12,7 +13,7 @@
 
   gtag('config', 'UA-50849473-1');
 </script>
-<head>
+</head>
 <div id="app" :style="styles">
 
 <div>
@@ -88,7 +89,8 @@
 <div>
 
 <div class="layout_box">
-<div>メインブキインク効率<div class="base"><div class="main_ink_buki_mid"></div></div></div>
+<div>メインブキインク効率 中量<div class="base"><div class="main_ink_buki_mid"></div></div></div>
+<div>メインブキインク効率 重量<div class="base"><div class="main_ink_buki_high"></div></div></div>
 <div>サブブキインク効率
   <div>
     <div v-for="(val, key) in getStatus('2')">
@@ -113,7 +115,9 @@
   <div>相手インク軽減 スリップダメージ
     <ul>
       <li>最大ダメージ量 : {{getFloor(getStatus("D").cap)}}</li>
-      <li>最大ダメージ到達時間 : {{getFloor((getStatus("D").cap/getStatus("D").slip)/60)}}秒</li>
+      <li>秒間ダメージ : {{getStatus("D").slip*60}}ダメージ</li>
+      <li>無敵フレーム数 : {{getFloor(getStatus("D").no_damage)}}フレーム</li>
+      <li>最大ダメージ到達時間 : {{getFloor((getStatus("D").cap/getStatus("D").slip)/60-getStatus("D").no_damage/60)}}秒</li>
     </ul>
     <div class="base"><div class="aite_ink"><div class="aite_ink_slip"></div></div></div>
   </div>
