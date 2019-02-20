@@ -115,7 +115,7 @@ var app = new Vue({
       return this.base_url+tmp;
     },
     exportTweet: function(){
-      var tmp = "http://twitter.com/share?"+ encodeURI("text=好きな文章を入れてね &hashtags=splatoon_gear&url=" + (this.exportEqui));
+      var tmp = "http://twitter.com/share?"+ encodeURI("text=好きな文章を入れてね &hashtags=splatoon_gear&url=") + encodeURIComponent(this.exportEqui);
       return tmp;
     },
     styles: function (){
