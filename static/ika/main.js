@@ -119,10 +119,10 @@ var app = new Vue({
       return tmp;
     },
     exportGps: function(){
-      var res = "";
+      var res = "ギアパワー(57表記):";
       var tt = this;
       Object.keys(app.gps).forEach(function(key){
-        res += "ギアパワー:"+tt.getGear(key).name+"="+tt.gps[key]+"/";
+        res += tt.getGear(key).name+"="+tt.gps[key]+"/";
       });
       return res;
     },
