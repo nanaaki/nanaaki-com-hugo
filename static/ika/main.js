@@ -118,6 +118,14 @@ var app = new Vue({
       var tmp = "http://twitter.com/share?"+ encodeURI("text=好きな文章を入れてね &hashtags=splatoon_gear&url=") + encodeURIComponent(this.exportEqui);
       return tmp;
     },
+    exportGps: function(){
+      var res = "";
+      var tt = this;
+      Object.keys(app.gps).forEach(function(key){
+        res += "<img src=\""+tt.base_url.slice(0,-2)+tt.getGear(key).image.slice(1)+"\" /> - " + tt.gps[key] +"<br/>";
+      });
+      return res;
+    },
     styles: function (){
       var ink_ika = this.getStatus("3").ika/60*1000+"ms";
       var ink_hito = this.getStatus("3").hito/60*1000+"ms";
