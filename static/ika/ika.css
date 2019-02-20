@@ -19,6 +19,23 @@
   --special-ink-down-width: 150px;
 }
 
+.twitter_box {
+    padding-top: 6px;
+}
+.twitter {
+  background-color: #55acee;
+  border: 2px solid #55acee;
+  border-radius: 5px;
+  color: #fff;
+  padding:4px 4px;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.twitter:hover {
+  background-color: #fff;
+  color: #55acee;
+}
+
 select{
     outline:none;
     text-indent: 0.01px;
