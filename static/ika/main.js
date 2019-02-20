@@ -122,7 +122,7 @@ var app = new Vue({
       var res = "";
       var tt = this;
       Object.keys(app.gps).forEach(function(key){
-        res += "ギアパワー:"+getGear(key).name+"="+tt.gps[key]+"/";
+        res += "ギアパワー:"+tt.getGear(key).name+"="+tt.gps[key]+"/";
       });
       return res;
     },
