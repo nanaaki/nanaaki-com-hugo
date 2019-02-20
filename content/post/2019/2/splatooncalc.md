@@ -19,7 +19,7 @@ draft: flase
 
 使っている式類は [ギアパワー計算式一覧](https://docs.google.com/spreadsheets/d/1LipqogT2EZBe19Pnks3ZD8rbST50U7AQvm5UlOzOg10/edit#gid=0) こちらのスプレッドシートに書いてあります。間違い指摘等はこちらにコメントしてくれると検証して暇なら対応します。
 
-アプデ情報とかは続きを読むからで
+以下アプデ情報
 
 <!--more-->
 
