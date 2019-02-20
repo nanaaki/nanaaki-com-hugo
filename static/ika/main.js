@@ -121,7 +121,7 @@ var app = new Vue({
     exportGps: function(){
       var res = "ギアパワー(57表記):";
       var tt = this;
-      Object.keys(app.gps).forEach(function(key){
+      Object.keys(this.gps).forEach(function(key){
         res += tt.getGear(key).name+"="+tt.gps[key]+"/";
       });
       return res;
