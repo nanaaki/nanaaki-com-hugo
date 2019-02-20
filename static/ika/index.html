@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title>スプラトゥーン2ギア計算機 v0.02</title>
 <meta charset="utf-8"/>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="vue.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -17,65 +19,85 @@
 <div id="app" :style="styles">
 
 <div>
-
-<div class="layout_box">
-<ul>
-  頭
-  <li><b>
-    <select v-model="equi.head.main">
-      <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
-    </select>
-  </b></li>
-  <li v-for="(item,index) in equi.head.sub">
-    <select v-model="equi.head.sub[index]">
-      <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
-    </select>
-  </li>
-</ul>
-</div>
-
-<div class="layout_box">
-<ul>
-  服
-  <li><b>
-    <select v-model="equi.body.main">
-      <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
-    </select>
-  </b></li>
-  <li v-for="(item,index) in equi.body.sub">
-    <select v-model="equi.body.sub[index]">
-      <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
-    </select>
-  </li>
-</ul>
-</div>
-
-<div class="layout_box">
-<ul>
-  靴
-  <li><b>
-    <select v-model="equi.leg.main">
-      <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
-    </select>
-  </b></li>
-  <li v-for="(item,index) in equi.leg.sub">
-    <select v-model="equi.leg.sub[index]">
-      <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
-    </select>
-  </li>
-</ul>
-</div>
-</div>
-
-<div>
   <div class=layout_box_status>
-    <div>ギアコード<input id="copy_data" :value=exportEqui><button v-on:click=copy_url>copy</button></div>
+    <div><label for=copy_data><button v-on:click=copy_url>Copy</button>:</label><input id="copy_data" :value=exportEqui></div>
+    <div><a :href=exportTweet class="twitter-share-button">Tweet</a></div>
+    <div class=equi_box>
     <ul>
-      <li v-for="(val, key) in gps">
-        {{getGear(key).name}}-{{val}}
+      <li>
+        <div class="select-width">
+        <div class="select-wrap select-circle-main" v-bind:style="{ 'background-image': 'url(' + equi.head.main.image + ')', 'background-repeat': 'no-repeat'}">
+        <select v-model="equi.head.main">
+          <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
+        </select>
+      </div>
+      </div>
+
+      </li>
+      <li v-for="(item,index) in equi.head.sub">
+        <div class="select-width">
+        <div class="select-wrap select-circle" v-bind:style="{ 'background-image': 'url(' + item.image + ')', 'background-repeat': 'no-repeat', 'background-size':'32px 32px', 'background-position':'left bottom'}">
+          <select v-model="equi.head.sub[index]">
+            <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
+          </select>
+        </div>
+        </div>
       </li>
     </ul>
+    </div>
+
+    <div class=equi_box>
+    <ul>
+      <li>
+        <div class="select-width">
+        <div class="select-wrap select-circle-main" v-bind:style="{ 'background-image': 'url(' + equi.body.main.image + ')', 'background-repeat': 'no-repeat'}">
+        <select v-model="equi.body.main">
+          <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
+        </select>
+        </div>
+        </div>
+      </li>
+      <li v-for="(item,index) in equi.body.sub">
+        <div class="select-width">
+        <div class="select-wrap select-circle" v-bind:style="{ 'background-image': 'url(' + item.image + ')', 'background-repeat': 'no-repeat', 'background-size':'32px 32px', 'background-position':'left bottom'}">
+        <select v-model="equi.body.sub[index]">
+          <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
+        </select>
+        </div>
+        </div>
+      </li>
+    </ul>
+    </div>
+
+    <div class=equi_box>
+    <ul>
+      <li><b>
+        <div class="select-width">
+        <div class="select-wrap select-circle-main" v-bind:style="{ 'background-image': 'url(' + equi.leg.main.image + ')', 'background-repeat': 'no-repeat'}">
+        <select v-model="equi.leg.main">
+          <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
+        </select>
+        </div>
+        </div>
+      </b></li>
+      <li v-for="(item,index) in equi.leg.sub">
+        <div class="select-width">
+        <div class="select-wrap select-circle" v-bind:style="{ 'background-image': 'url(' + item.image + ')', 'background-repeat': 'no-repeat', 'background-size':'32px 32px', 'background-position':'left bottom'}">
+        <select v-model="equi.leg.sub[index]">
+          <option v-for="option in gear" v-bind:value="option">{{option.name}}</option>
+        </select>
+        </div>
+        </div>
+      </li>
+    </ul>
+    </div>
+    <div v-if="boost.name!=''">
+    <button v-if="boost.on" v-on:click="boost.on=false">{{boost.name}}有効</button>
+    <button v-else v-on:click="boost.on=true">{{boost.name}}無効</button>
+    </div>
   </div>
+
+
   <div class="layout_box_x2">
     移動速度 試し打ちライン3本分
     <div>ヒト状態速度{{getFloor((50/getStatus("5").middle)/60)+"秒"}}<div class=base_move_border><div class="move_hito"></div></div></div>
@@ -133,6 +155,13 @@
 </div>
 
 <div class=layout_box>メイン性能アップ(未実装)</div>
+<div class=layout_box>GPS一覧
+  <ul>
+    <li v-for="(val, key) in gps">
+      <img :src="getGear(key).image" width="16px" height="16px" />{{getGear(key).name}} - {{val}}
+    </li>
+  </ul>
+</div>
 
 
 
