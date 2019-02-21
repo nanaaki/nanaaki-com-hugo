@@ -326,6 +326,49 @@ var app = new Vue({
       this.equi.leg.sub   = leg.slice(1).map(function(val){
         return tt.gear.filter(function(fval){return fval.code == val})[0]
       });
+              var canvas = document.getElementById("hidden_canvas");
+              var ctx = canvas.getContext('2d');
+              canvas.width=144;canvas.height=144;
+
+              var img = new Image();
+              img.src = this.base_url.slice(0,-1)+this.equi.head.main.image.slice(2);
+              img.onload = function(){ ctx.drawImage(img,0,0); }
+              var img = new Image();
+              img.src = this.base_url.slice(0,-1)+this.equi.head.sub[0].image.slice(2);
+              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48,16,32,32);}
+              var img = new Image();
+              img.src = this.base_url.slice(0,-1)+this.equi.head.sub[1].image.slice(2);
+              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32,16,32,32);}
+              var img = new Image();
+              img.src = this.base_url.slice(0,-1)+this.equi.head.sub[2].image.slice(2);
+              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32+32,16,32,32);}
+
+              var img = new Image();
+              img.src = this.base_url.slice(0,-1)+this.equi.body.main.image.slice(2);
+              img.onload = function(){ ctx.drawImage(img,0,48); }
+              var img = new Image();
+              img.src = this.base_url.slice(0,-1)+this.equi.body.sub[0].image.slice(2);
+              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48,16+48,32,32);}
+              var img = new Image();
+              img.src = this.base_url.slice(0,-1)+this.equi.body.sub[1].image.slice(2);
+              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32,16+48,32,32);}
+              var img = new Image();
+              img.src = this.base_url.slice(0,-1)+this.equi.body.sub[2].image.slice(2);
+              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32+32,16+48,32,32);}
+
+              var img = new Image();
+              img.src = this.base_url.slice(0,-1)+this.equi.leg.main.image.slice(2);
+              img.onload = function(){ ctx.drawImage(img,0,96); }
+              var img = new Image();
+              img.src = this.base_url.slice(0,-1)+this.equi.body.sub[0].image.slice(2);
+              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48,16+48+48,32,32);}
+              var img = new Image();
+              img.src = this.base_url.slice(0,-1)+this.equi.body.sub[1].image.slice(2);
+              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32,16+48+48,32,32);}
+              var img = new Image();
+              img.src = this.base_url.slice(0,-1)+this.equi.body.sub[2].image.slice(2);
+              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32+32,16+48+48,32,32);}
+      this.gen_base_64();
     }
   }
 })
