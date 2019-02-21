@@ -118,7 +118,7 @@ var app = new Vue({
       var tmp = this.equi.head.main.code + this.equi.body.sub[0].code + this.equi.body.sub[1].code + this.equi.body.sub[2].code;
       tmp    += ("-" + this.equi.body.main.code + this.equi.body.sub[0].code + this.equi.body.sub[1].code + this.equi.body.sub[2].code);
       tmp    += ("-" + this.equi.leg.main.code + this.equi.leg.sub[0].code + this.equi.leg.sub[1].code + this.equi.leg.sub[2].code);
-      return "https://us-central1-nanadon-213503.cloudfunctions.net/generate_gps_image?g="+tmp;
+      return "https://us-central1-nanadon-213503.cloudfunctions.net/generate_gps_image?g="+tmp+"&v=0.02";
     },
     exportTweet: function(){
       var tmp = "http://twitter.com/share?"+ encodeURI("text=好きな文章を入れてね &hashtags=splatoon_gear&url=") + encodeURIComponent(this.exportEqui);
