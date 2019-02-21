@@ -20,13 +20,13 @@
 <meta name="twitter:url" :content=exportEqui />
 <meta name="twitter:title" content="スプラトゥーン2ギアパワー計算機" />
 <meta name="twitter:description" :content=exportGps />
-<meta name="twitter:image" :content=image_base64 />
+<meta name="twitter:image" :content=exportTweetCard />
 
 
 <div>
   <div class=layout_box_status>
     <div><label for=copy_data><button v-on:click=copy_url>Copy</button>:</label><input id="copy_data" :value=exportEqui></div>
-    <div class=twitter_box><a :href=exportTweet class="twitter" target="_blank" v-on:click=gen_base_64>Tweet</a></div>
+    <div class=twitter_box><a :href=exportTweet class="twitter" target="_blank">Tweet</a></div>
     <div class=equi_box>
     <ul>
       <li>

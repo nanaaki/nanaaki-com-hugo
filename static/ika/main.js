@@ -2,7 +2,6 @@ var app = new Vue({
   el: '#app',
   data: {
     base_url: "https://nanaaki.com/ika/?",
-    image_base64: "",
     message: location.search,
     boost: {on:false, boost_gps: {}, name:""},
     equi:{
@@ -115,6 +114,12 @@ var app = new Vue({
       tmp    += ("-" + this.equi.leg.main.code + this.equi.leg.sub[0].code + this.equi.leg.sub[1].code + this.equi.leg.sub[2].code);
       return this.base_url+tmp;
     },
+    exportTweetCard: function(){
+      var tmp = this.equi.head.main.code + this.equi.body.sub[0].code + this.equi.body.sub[1].code + this.equi.body.sub[2].code;
+      tmp    += ("-" + this.equi.body.main.code + this.equi.body.sub[0].code + this.equi.body.sub[1].code + this.equi.body.sub[2].code);
+      tmp    += ("-" + this.equi.leg.main.code + this.equi.leg.sub[0].code + this.equi.leg.sub[1].code + this.equi.leg.sub[2].code);
+      return "https://us-central1-nanadon-213503.cloudfunctions.net/generate_gps_image?g="+tmp;
+    },
     exportTweet: function(){
       var tmp = "http://twitter.com/share?"+ encodeURI("text=好きな文章を入れてね &hashtags=splatoon_gear&url=") + encodeURIComponent(this.exportEqui);
       return tmp;
@@ -187,52 +192,6 @@ var app = new Vue({
         Object.keys(tmp).forEach(function(key){
           tt.$set(tt.gps, (key ? key : 'F'), tmp[key]);
         });
-
-        var canvas = document.getElementById("hidden_canvas");
-        var ctx = canvas.getContext('2d');
-        canvas.width=144;canvas.height=144;
-        var images = []
-        var image_urls = [this.base_url.slice(0,-1)+val.head.main.image.slice(2),
-         this.base_url.slice(0,-1)+val.head.sub[0].image.slice(2),
-         this.base_url.slice(0,-1)+val.head.sub[1].image.slice(2),
-         this.base_url.slice(0,-1)+val.head.sub[2].image.slice(2),
-         this.base_url.slice(0,-1)+val.body.main.image.slice(2),
-         this.base_url.slice(0,-1)+val.body.sub[0].image.slice(2),
-         this.base_url.slice(0,-1)+val.body.sub[1].image.slice(2),
-         this.base_url.slice(0,-1)+val.body.sub[2].image.slice(2),
-         this.base_url.slice(0,-1)+val.leg.main.image.slice(2),
-         this.base_url.slice(0,-1)+val.body.sub[0].image.slice(2),
-         this.base_url.slice(0,-1)+val.body.sub[1].image.slice(2),
-         this.base_url.slice(0,-1)+val.body.sub[2].image.slice(2)]
-         for(var i in image_urls) {
-           images[i] = new Image();
-           images[i].src = image_urls[i];
-         }
-         var load_count = 1;
-         for(var i in images){
-           images[i].addEventListener('load', function(){
-             if(load_count == images.length){
-               ctx.drawImage(images[0],0,0);
-               ctx.drawImage(images[1],0,0,48,48,48,16,32,32);
-               ctx.drawImage(images[2],0,0,48,48,48+32,16,32,32);
-               ctx.drawImage(images[3],0,0,48,48,48+32+32,16,32,32);
-               ctx.drawImage(images[4],0,48);
-               ctx.drawImage(images[5],0,0,48,48,48,16+48,32,32);
-               ctx.drawImage(images[6],0,0,48,48,48+32,16+48,32,32);
-               ctx.drawImage(images[7],0,0,48,48,48+32+32,16+48,32,32);
-               ctx.drawImage(images[8],0,96);
-               ctx.drawImage(images[9],0,0,48,48,48,16+48+48,32,32);
-               ctx.drawImage(images[10],0,0,48,48,48+32,16+48+48,32,32);
-               ctx.drawImage(images[11],0,0,48,48,48+32+32,16+48+48,32,32);
-               tt.image_base64=canvas.toDataURL("image/jpeg");
-             }
-             load_count++;
-           }, false);
-         }
-
-
-
-
       },
       deep: true
     },
@@ -278,9 +237,6 @@ var app = new Vue({
     }
   },
   methods: {
-    gen_base_64: function(){
-      this.image_base64 = document.getElementById("hidden_canvas").toDataURL('image/png');
-    },
     copy_url: function(){
       var tmp = document.querySelector('#copy_data');
       tmp.select();
