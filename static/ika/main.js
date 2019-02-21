@@ -191,45 +191,48 @@ var app = new Vue({
         var canvas = document.getElementById("hidden_canvas");
         var ctx = canvas.getContext('2d');
         canvas.width=144;canvas.height=144;
+        var images = []
+        var image_urls = [this.base_url.slice(0,-1)+val.head.main.image.slice(2),
+         this.base_url.slice(0,-1)+val.head.sub[0].image.slice(2),
+         this.base_url.slice(0,-1)+val.head.sub[1].image.slice(2),
+         this.base_url.slice(0,-1)+val.head.sub[2].image.slice(2),
+         this.base_url.slice(0,-1)+val.body.main.image.slice(2),
+         this.base_url.slice(0,-1)+val.body.sub[0].image.slice(2),
+         this.base_url.slice(0,-1)+val.body.sub[1].image.slice(2),
+         this.base_url.slice(0,-1)+val.body.sub[2].image.slice(2),
+         this.base_url.slice(0,-1)+val.leg.main.image.slice(2),
+         this.base_url.slice(0,-1)+val.body.sub[0].image.slice(2),
+         this.base_url.slice(0,-1)+val.body.sub[1].image.slice(2),
+         this.base_url.slice(0,-1)+val.body.sub[2].image.slice(2)]
+         for(var i in image_urls) {
+           images[i] = new Image();
+           images[i].src = image_urls[i];
+         }
+         var load_count = 1;
+         for(var i in images){
+           images[i].addEventListener('load', function(){
+             if(load_count == images.length){
+               ctx.drawImage(images[0],0,0);
+               ctx.drawImage(images[1],0,0,48,48,48,16,32,32);
+               ctx.drawImage(images[2],0,0,48,48,48+32,16,32,32);
+               ctx.drawImage(images[3],0,0,48,48,48+32+32,16,32,32);
+               ctx.drawImage(images[4],0,48);
+               ctx.drawImage(images[5],0,0,48,48,48,16+48,32,32);
+               ctx.drawImage(images[6],0,0,48,48,48+32,16+48,32,32);
+               ctx.drawImage(images[7],0,0,48,48,48+32+32,16+48,32,32);
+               ctx.drawImage(images[8],0,96);
+               ctx.drawImage(images[9],0,0,48,48,48,16+48+48,32,32);
+               ctx.drawImage(images[10],0,0,48,48,48+32,16+48+48,32,32);
+               ctx.drawImage(images[11],0,0,48,48,48+32+32,16+48+48,32,32);
+               tt.image_base64=canvas.toDataURL("image/png");
+             }
+             load_count++;
+           }, false);
+         }
 
-        var img = new Image();
-        img.src = this.base_url.slice(0,-1)+val.head.main.image.slice(2);
-        img.onload = function(){ ctx.drawImage(img,0,0); }
-        var img = new Image();
-        img.src = this.base_url.slice(0,-1)+val.head.sub[0].image.slice(2);
-        img.onload = function(){ ctx.drawImage(img,0,0,48,48,48,16,32,32);}
-        var img = new Image();
-        img.src = this.base_url.slice(0,-1)+val.head.sub[1].image.slice(2);
-        img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32,16,32,32);}
-        var img = new Image();
-        img.src = this.base_url.slice(0,-1)+val.head.sub[2].image.slice(2);
-        img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32+32,16,32,32);}
 
-        var img = new Image();
-        img.src = this.base_url.slice(0,-1)+val.body.main.image.slice(2);
-        img.onload = function(){ ctx.drawImage(img,0,48); }
-        var img = new Image();
-        img.src = this.base_url.slice(0,-1)+val.body.sub[0].image.slice(2);
-        img.onload = function(){ ctx.drawImage(img,0,0,48,48,48,16+48,32,32);}
-        var img = new Image();
-        img.src = this.base_url.slice(0,-1)+val.body.sub[1].image.slice(2);
-        img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32,16+48,32,32);}
-        var img = new Image();
-        img.src = this.base_url.slice(0,-1)+val.body.sub[2].image.slice(2);
-        img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32+32,16+48,32,32);}
 
-        var img = new Image();
-        img.src = this.base_url.slice(0,-1)+val.leg.main.image.slice(2);
-        img.onload = function(){ ctx.drawImage(img,0,96); }
-        var img = new Image();
-        img.src = this.base_url.slice(0,-1)+val.body.sub[0].image.slice(2);
-        img.onload = function(){ ctx.drawImage(img,0,0,48,48,48,16+48+48,32,32);}
-        var img = new Image();
-        img.src = this.base_url.slice(0,-1)+val.body.sub[1].image.slice(2);
-        img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32,16+48+48,32,32);}
-        var img = new Image();
-        img.src = this.base_url.slice(0,-1)+val.body.sub[2].image.slice(2);
-        img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32+32,16+48+48,32,32);}
+
       },
       deep: true
     },
@@ -326,49 +329,6 @@ var app = new Vue({
       this.equi.leg.sub   = leg.slice(1).map(function(val){
         return tt.gear.filter(function(fval){return fval.code == val})[0]
       });
-              var canvas = document.getElementById("hidden_canvas");
-              var ctx = canvas.getContext('2d');
-              canvas.width=144;canvas.height=144;
-
-              var img = new Image();
-              img.src = this.base_url.slice(0,-1)+this.equi.head.main.image.slice(2);
-              img.onload = function(){ ctx.drawImage(img,0,0); }
-              var img = new Image();
-              img.src = this.base_url.slice(0,-1)+this.equi.head.sub[0].image.slice(2);
-              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48,16,32,32);}
-              var img = new Image();
-              img.src = this.base_url.slice(0,-1)+this.equi.head.sub[1].image.slice(2);
-              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32,16,32,32);}
-              var img = new Image();
-              img.src = this.base_url.slice(0,-1)+this.equi.head.sub[2].image.slice(2);
-              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32+32,16,32,32);}
-
-              var img = new Image();
-              img.src = this.base_url.slice(0,-1)+this.equi.body.main.image.slice(2);
-              img.onload = function(){ ctx.drawImage(img,0,48); }
-              var img = new Image();
-              img.src = this.base_url.slice(0,-1)+this.equi.body.sub[0].image.slice(2);
-              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48,16+48,32,32);}
-              var img = new Image();
-              img.src = this.base_url.slice(0,-1)+this.equi.body.sub[1].image.slice(2);
-              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32,16+48,32,32);}
-              var img = new Image();
-              img.src = this.base_url.slice(0,-1)+this.equi.body.sub[2].image.slice(2);
-              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32+32,16+48,32,32);}
-
-              var img = new Image();
-              img.src = this.base_url.slice(0,-1)+this.equi.leg.main.image.slice(2);
-              img.onload = function(){ ctx.drawImage(img,0,96); }
-              var img = new Image();
-              img.src = this.base_url.slice(0,-1)+this.equi.body.sub[0].image.slice(2);
-              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48,16+48+48,32,32);}
-              var img = new Image();
-              img.src = this.base_url.slice(0,-1)+this.equi.body.sub[1].image.slice(2);
-              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32,16+48+48,32,32);}
-              var img = new Image();
-              img.src = this.base_url.slice(0,-1)+this.equi.body.sub[2].image.slice(2);
-              img.onload = function(){ ctx.drawImage(img,0,0,48,48,48+32+32,16+48+48,32,32);}
-      this.gen_base_64();
     }
   }
 })
