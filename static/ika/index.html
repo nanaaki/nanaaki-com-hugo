@@ -21,12 +21,13 @@
 <meta property="og:url" :content=exportEqui />
 <meta property="og:title" content="スプラトゥーン2ギアパワー計算機" />
 <meta property="og:description" :content=exportGps />
+<meta property="og:image" :content=image_base64 />
 
 
 <div>
   <div class=layout_box_status>
     <div><label for=copy_data><button v-on:click=copy_url>Copy</button>:</label><input id="copy_data" :value=exportEqui></div>
-    <div class=twitter_box><a :href=exportTweet class="twitter" target="_blank">Tweet</a></div>
+    <div class=twitter_box><a :href=exportTweet class="twitter" target="_blank" v-on:click=gen_base_64>Tweet</a></div>
     <div class=equi_box>
     <ul>
       <li>
@@ -168,8 +169,8 @@
   </ul>
 </div>
 
-
-
+<canvas id="hidden_canvas" style="display:none;"></canvas>
+<img :src="image_base64">
 
 </div>
 <script src="main.js"></script>
