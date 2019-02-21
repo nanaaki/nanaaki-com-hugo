@@ -224,7 +224,7 @@ var app = new Vue({
                ctx.drawImage(images[9],0,0,48,48,48,16+48+48,32,32);
                ctx.drawImage(images[10],0,0,48,48,48+32,16+48+48,32,32);
                ctx.drawImage(images[11],0,0,48,48,48+32+32,16+48+48,32,32);
-               tt.image_base64=canvas.toDataURL("image/png");
+               tt.image_base64=canvas.toDataURL("image/jpeg");
              }
              load_count++;
            }, false);
