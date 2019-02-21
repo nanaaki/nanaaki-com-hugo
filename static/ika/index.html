@@ -17,10 +17,10 @@
 </head>
 <div id="app" :style="styles">
 <meta name="twitter:card" content="summary" />
-<meta property="og:url" :content=exportEqui />
-<meta property="og:title" content="スプラトゥーン2ギアパワー計算機" />
-<meta property="og:description" :content=exportGps />
-<meta property="og:image" :content=image_base64 />
+<meta name="twitter:url" :content=exportEqui />
+<meta name="twitter:title" content="スプラトゥーン2ギアパワー計算機" />
+<meta name="twitter:description" :content=exportGps />
+<meta name="twitter:image" :content=image_base64 />
 
 
 <div>
@@ -169,7 +169,6 @@
 </div>
 
 <canvas id="hidden_canvas" style="display:none;"></canvas>
-<img :src="image_base64">
 
 </div>
 <script src="main.js"></script>
