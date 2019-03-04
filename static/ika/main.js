@@ -125,7 +125,8 @@ var app = new Vue({
       return "https://us-central1-nanadon-213503.cloudfunctions.net/generate_gps_image?g="+tmp+"&v=0.02";
     },
     exportTweet: function(){
-      var tmp = "ギアパワー計算機 " + this.version + " " + this.exportEqui;
+
+      var tmp = "http://twitter.com/share?"+ encodeURI("text=&hashtags=splatoon_gear&url=") + encodeURIComponent(this.exportEqui);
       return tmp;
     },
     exportGps: function(){

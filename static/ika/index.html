@@ -68,7 +68,7 @@
           <div class="tile is-12 is-child box">
             <p class="subtitle">ギア</p>
             <div><label for=copy_data><button v-on:click=copy_url>Copy</button>:</label><input id="copy_data" :value=exportEqui></div>
-            <a href="https://twitter.com/intent/tweet?button_hashtag=splatoon_gear&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" :data-text=exportTweet data-show-count="false">Tweet #splatoon_gear</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <div class=twitter_box><a :href=exportTweet class="twitter" target="_blank">Tweet</a></div>
             <div class="equi_box">
               <ul>
                 <li><div style="position:relative;float:left;">頭</div></li>
