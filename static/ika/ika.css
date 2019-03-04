@@ -4,23 +4,24 @@
   --move-hito: 0s;
   --move-ika: 0s;
   --move-aite: 0s;
-  --slip-damege-cap: 150px;
+  --slip-damege-cap: 100%;
   --slip-damege-sec: 3s;
   --jump-wait-count: 3s;
   --jump-jump-count: 3s;
   --jump-sum: 3s;
-  --jump-wait-px: 30px;
+  --jump-wait-par: 50%;
   --respone-count: 4s;
-  --ink-buki-mid-width: 150px;
+  --ink-buki-mid-par: 100%;
   --ink-buki-mid-content: "100.00%";
-  --ink-buki-high-width: 150px;
+  --ink-buki-high-par: 100%;
   --ink-buki-high-content: "100.00%";
-  --special-ink-width: 150px;
-  --special-ink-down-width: 150px;
+  --special-ink-par: 100%;
+  --special-ink-down-par: 100%;
 }
 
 .twitter_box {
-    padding-top: 6px;
+  padding-top:8px;
+  padding-bottom:8px;
 }
 .twitter {
   background-color: #55acee;
@@ -88,10 +89,10 @@ select option{
 }
 
 .select-wrap.select-circle-main:hover{
-  width: 60px;
+  width: 48px;
 }
 .select-wrap.select-circle-main:hover > select,.select-wrap.select-circle-main > select:hover{
-    width: 60px;
+    width: 48px;
     border-radius: 25px;
     font-size: 16px;
     background-color: #3CB371;
@@ -100,14 +101,14 @@ select option{
 }
 
 .select-width {
-  width: 240px;
+  width: 100%;
 }
 
 .select-wrap.select-circle:hover{
-  width: 60px;
+  width: 32px;
 }
 .select-wrap.select-circle:hover > select,.select-wrap.select-circle > select:hover{
-    width: 60px;
+    width: 32px;
     border-radius: 25px;
     font-size: 16px;
     background-color: #3CB371;
@@ -132,26 +133,26 @@ ul, li {
 .base {
   display: block;
   height: 25px;
-  width: 150px;
+  width: 100%;
   border: 1px solid #3CB371;
 }
 
 .base_move {
   display: block;
   height: 25px;
-  width: 360px;
+  width: 100%;
   border: 1px solid #3CB371;
 }
 
 .base_move_border {
   background:
-      repeating-linear-gradient(90deg, #3CB371, #3CB371 1px, white 1px, white);
-  background-size: 120px 25px;
+      repeating-linear-gradient(90deg, #3CB371, #3CB371 2px, white 2px, white);
+  background-size: 25% 25px;
   background-repeat: repeat-x;
 
   display: block;
   height: 25px;
-  width: 360px;
+  width: 100%;
   border-top: 1px solid #3CB371;
   border-bottom: 1px solid #3CB371;
   border-right: 1px solid #3CB371;
@@ -191,7 +192,7 @@ ul, li {
   display: block;
   background-color: #3CB371;
   height: 25px;
-  width: var(--ink-buki-mid-width);
+  width: var(--ink-buki-mid-par);
   content: "0%";
 }
 .main_ink_buki_mid::after {
@@ -202,7 +203,7 @@ ul, li {
   display: block;
   background-color: #3CB371;
   height: 25px;
-  width: var(--ink-buki-high-width);
+  width: var(--ink-buki-high-par);
   content: "0%";
 }
 .main_ink_buki_high::after {
@@ -213,14 +214,14 @@ ul, li {
   display: block;
   background-color: #3CB371;
   height: 25px;
-  width: var(--special-ink-width);
+  width: var(--special-ink-par);
 }
 
 .special_ink_down {
   display: block;
   background-color: #3CB371;
   height: 25px;
-  width: var(--special-ink-down-width);
+  width: var(--special-ink-down-par);
 }
 
 .main_ink_ika::before {
@@ -229,7 +230,7 @@ ul, li {
     background-color: white;
     content: '0';
     height: 25px;
-    width: 150px;
+    width: 100%;
 }
 
 .move_hito {
@@ -290,12 +291,27 @@ ul, li {
   height: 25px;
   margin-left: 0px;
   width: 2px;
+  top: 0px;
 }
-.jump_background_count {
+
+.jump_wait_count {
   display: block;
   background-color: gray;
   height: 25px;
-  width: var(--jump-wait-px);
+  width: var(--jump-wait-par);
+  margin-left: 0px;
+}
+
+.base_jump_border {
+  background:
+      linear-gradient(90deg, gray, gray var(--jump-wait-par), white, white 2px);
+  background-size: 100% 25px;
+  display: block;
+  height: 25px;
+  width: 100%;
+  border-top: 1px solid #3CB371;
+  border-bottom: 1px solid #3CB371;
+  border-right: 1px solid #3CB371;
 }
 
 
@@ -305,8 +321,17 @@ ul, li {
     background-color: white;
     content: '0';
     height: 25px;
-    width: 150px;
+    width: 100%;
 }
+
+.progress_animation {
+  animation: count_up 1s linear infinite;
+}
+@keyframes progress_values {
+  0% {value:"0"},
+  100% {value:"100"}
+}
+
 
 @keyframes count_up {
   0% {content: "0";}
@@ -419,7 +444,7 @@ ul, li {
     }
     100% {
         background-color:#3CB371;
-        width: 150px;
+        width: 100%;
     }
 }
 @keyframes move_anime {
@@ -433,10 +458,10 @@ ul, li {
 
 @keyframes jump_anime {
     0% {
-      margin-left: 0px;
+      margin-left: 0%;
     }
     100% {
-      margin-left: 360px;
+      margin-left: 100%;
     }
 }
 

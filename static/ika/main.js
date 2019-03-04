@@ -1,8 +1,12 @@
 var app = new Vue({
   el: '#app',
   data: {
+    version: 'v0.0.5',
     base_url: "https://nanaaki.com/ika/?",
     message: location.search,
+    buki: {type:'light',
+            spec: {damege:35, frame:6, range:3.4, charge_time:75, move:0},
+            special:{point:180, id:'multi'}},
     boost: {on:false, boost_gps: {}, name:""},
     equi:{
       head:{main:{code:'F', name:'-'},sub:[{code:'F', name:'-'},{code:'F', name:'-'},{code:'F', name:'-'}]},
@@ -121,7 +125,7 @@ var app = new Vue({
       return "https://us-central1-nanadon-213503.cloudfunctions.net/generate_gps_image?g="+tmp+"&v=0.02";
     },
     exportTweet: function(){
-      var tmp = "http://twitter.com/share?"+ encodeURI("text=好きな文章を入れてね &hashtags=splatoon_gear&url=") + encodeURIComponent(this.exportEqui);
+      var tmp = "ギアパワー計算機 " + this.version + " " + this.exportEqui;
       return tmp;
     },
     exportGps: function(){
@@ -136,8 +140,8 @@ var app = new Vue({
       var ink_ika = this.getStatus("3").ika/60*1000+"ms";
       var ink_hito = this.getStatus("3").hito/60*1000+"ms";
       var buki_ink = this.getStatus("1");
-      var move_hito = (3*(50/this.getStatus("5").middle)/60)*1000+"ms";
-      var move_ika = (3*(50/this.getStatus("6").middle)/60)*1000+"ms";
+      var move_hito = (4*(50/this.getStatus("5").middle)/60)*1000+"ms";
+      var move_ika = (4*(50/this.getStatus("6").middle)/60)*1000+"ms";
       var special_ink = this.getStatus("7");
 
       return {
@@ -146,19 +150,19 @@ var app = new Vue({
         '--move-hito' : move_hito,
         '--move-ika' : move_ika,
         '--move-aite' : ((50/this.getStatus("D").hito)/60*3)*1000+"ms",
-        '--slip-damege-cap' : 150*(this.getStatus("D").cap/100)+"px",
+        '--slip-damege-cap' : 100*(this.getStatus("D").cap/100)+"%",
         '--slip-damege-sec' : ((this.getStatus("D").cap/this.getStatus("D").slip)/60)*1000+"ms",
         '--respone-count' : this.getStatus("A")/60+"s",
-        '--jump-wait-count': (this.getStatus("B").wait/60)*3+"s",
-        '--jump-jump-count': (this.getStatus("B").jump/60)*3+"s",
+        '--jump-wait-count': (this.getStatus("B").wait/60)*4+"s",
+        '--jump-jump-count': (this.getStatus("B").jump/60)*4+"s",
         '--jump-sum': (this.getStatus("B").wait/60+this.getStatus("B").jump/60)*1000+"ms",
-        '--jump-wait-px': this.getFloor(150*(this.getStatus("B").wait/(this.getStatus("B").wait+this.getStatus("B").jump))*2)+"px",
-        '--ink-buki-mid-width' : (buki_ink.mid*150)+"px",
+        '--jump-wait-par': this.getFloor( this.getStatus("B").wait/(this.getStatus("B").wait+this.getStatus("B").jump) * 100)+"%",
+        '--ink-buki-mid-par' : (buki_ink.mid*100)+"%",
         '--ink-buki-mid-content' : "\""+this.getFloor(buki_ink.mid*100)+"%\"",
-        '--ink-buki-high-width' : (buki_ink.high*150)+"px",
+        '--ink-buki-high-par' : (buki_ink.high*100)+"%",
         '--ink-buki-high-content' : "\""+this.getFloor(buki_ink.high*100)+"%\"",
-        '--special-ink-width': 150*((180/special_ink)/180)+"px",
-        '--special-ink-down-width': 150*(1-this.getStatus("8"))+"px"
+        '--special-ink-par': 100*((this.buki.special.point/special_ink)/this.buki.special.point)+"%",
+        '--special-ink-down-par': 100*(1-this.getStatus("8"))+"%"
       };
     }
   },
@@ -247,7 +251,7 @@ var app = new Vue({
         display: 'block',
         'background-color': color,
         height: '25px',
-        width: type == 'base' ? 150*(val.ink/100)+'px' : 150*((val.ink*val.ratio)/100)+'px',
+        width: type == 'base' ? 100*(val.ink/100)+'%' : 100*val.ratio+'%',
       }
     },
     getFloor: function(n){return Math.floor(n*100)/100;},
