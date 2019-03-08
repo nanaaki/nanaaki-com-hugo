@@ -6,3 +6,4 @@ draft: False
 
 twitter:[ななあき](https://twitter.com/nanaaki_77th)
 
+PrivacyPolicy:[PrivacyPolicy](https://nanaaki.com/page/privacy_policy/)
