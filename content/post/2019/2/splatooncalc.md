@@ -19,6 +19,8 @@ draft: flase
 
 使っている式類は [ギアパワー計算式一覧](https://docs.google.com/spreadsheets/d/1LipqogT2EZBe19Pnks3ZD8rbST50U7AQvm5UlOzOg10/edit#gid=0) こちらのスプレッドシートに書いてあります。間違い指摘等はこちらにコメントしてくれると検証して暇なら対応します。
 
+一応Google Analytics入れてるのでプライバシーポリシー[https://nanaaki.com/page/privacy_policy/](https://nanaaki.com/page/privacy_policy/)
+
 以下アプデ情報
 
 <!--more-->
@@ -29,6 +31,7 @@ draft: flase
 		* cssのアニメーションの細かい調整。
 		* Bulmaフレームワーク入れてデザイン周りの調整。flexbox化。
 		* おそらくスマホでもある程度まともに表示される。
+		* Google analytics導入
 	* 未修正点+今後したいこと
 		* メイン性能アップ周りのデータ投入と表示
 		* ブキデータの投入と表示、効果等の影響度可視化(一応ダメージ量等のデータを内部で持てる状態に今回のアプデでなってる)
