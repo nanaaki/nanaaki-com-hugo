@@ -1,12 +1,205 @@
+buki = [
+  {type:'light',
+   name:'ボールドマーカー',
+   bomb:'carling',
+   spec:{damage:38, frame:5, range:1.5, charge_time:0, move:0, ink:0.8},
+   special:{point:160, id:'landing'},
+   main_spec_up:{type:'damage', calc:function(gp){ return 1+0.25*(0.033*gp-0.00027*gp**2) }}
+  },
+  {type:'light',
+   name:'ボトルガイザー',
+   bomb:'carling',
+   spec:{
+     single:{damage:38, frame:8, range:3.1, charge_time:0, move:0, ink:2.5},
+     auto:  {damage:30, frame:7, range:2.2, charge_time:0, move:0, ink:0.9}
+   },
+   special:{point:180, id:'hyper'},
+   main_spec_up:{type:'damage', calc:{
+     single:function(gp){ return 1+0.3*(0.033*gp-0.00027*gp**2)},
+     auto:function(gp){ return 1+0.2*(0.033*gp-0.00027*gp**2)} }}
+   },
+   {type:'light',
+    name:'プライムシューター',
+    bomb:'point',
+    spec:{damage:42, frame:8, range:3.1, charge_time:0, move:0, ink:2},
+    special:{point:170, id:'rain'},
+    main_spec_up:{type:'damage', calc:function(gp){ return 1+0.25*(0.033*gp-0.00027*gp**2) }}
+   },
+   {type:'light',
+    name:'Lリールガン',
+    bomb:'point',
+    spec:{damage:29, frame:4, range:3.1, charge_time:0, move:0, ink:1},
+    special:{point:170, id:'sphere'},
+    main_spec_up:{type:'damage', calc:function(gp){ return 1+0.3*(0.033*gp-0.00027*gp**2) }}
+   },
+   {type:'light',
+    name:'Hリールガン',
+    bomb:'point',
+    spec:{damage:29, frame:4, range:3.1, charge_time:0, move:0, ink:1},
+    special:{point:170, id:'sphere'},
+    main_spec_up:{type:'damage', calc:function(gp){ return 1+0.24*(0.033*gp-0.00027*gp**2) }}
+   },
+   {type:'light',
+    name:'96ガロン',
+    bomb:'sprinkler',
+    spec:{damage:62, frame:12, range:3.5, charge_time:0, move:0, ink:2.5},
+    special:{point:190, id:'armor'},
+    main_spec_up:{type:'damage', calc:function(gp){ return 1+0.25*(0.033*gp-0.00027*gp**2) }}
+   },
+   {type:'light',
+    name:'シャープマーカー',
+    bomb:'poison',
+    spec:{damage:28, frame:5, range:2.4, charge_time:0, move:0, ink:0.8},
+    special:{point:170, id:'jetpack'},
+    main_spec_up:{type:'damage', calc:function(gp){ return 1+0.25*(0.033*gp-0.00027*gp**2) }}
+   },
+   {type:'light',
+    name:'スパッタリー',
+    bomb:'beacon',
+    spec:{damage:36, frame:5, range:1.9, charge_time:0, move:0, ink:0.75},
+    special:{point:180, id:'cuban_pitcher'},
+    main_spec_up:{type:'damage', calc:function(gp){ return 1+0.2*(0.033*gp-0.00027*gp**2) }}
+   },
+   {type:'light',
+    name:'クアドラホッパー',
+    bomb:'robot',
+    spec:{damage:28, frame:6, range:2.5, charge_time:0, move:0, ink:0.8},
+    special:{point:190, id:'landing'},
+    main_spec_up:{type:'damage', calc:function(gp){ return 1+0.2*(0.033*gp-0.00027*gp**2) }}
+   },
+   {type:'light',
+    name:'ケルビン525',
+    bomb:'robot',
+    spec:{
+         normal:{damage:36,   frame:9, range:2.6, charge_time:0, move:0, ink:1.6},
+         slide: {damage:52.5, frame:9, range:3.0, charge_time:0, move:0, ink:1.6}
+    },
+    special:{point:180, id:'jetpack'},
+    main_spec_up:{type:'damage', calc:function(gp){ return 1+0.2*(0.033*gp-0.00027*gp**2) }}
+   },
+   {type:'light',
+    name:'スプラマニューバー',
+    bomb:'quick',
+    spec:{damage:36,   frame:9, range:2.6, charge_time:0, move:0, ink:1.6},
+    special:{point:180, id:'jetpack'},
+    main_spec_up:{type:'damage', calc:function(gp){ return 1+0.2*(0.033*gp-0.00027*gp**2) }}
+   },
+   {type:'light',
+    name:'デュアルスイーパー',
+    bomb:'point',
+    spec:{damage:28,   frame:6, range:3.1, charge_time:0, move:0, ink:1.2},
+    special:{point:190, id:'multi'},
+    main_spec_up:{type:'damage', calc:function(gp){ return 1+0.2*(0.033*gp-0.00027*gp**2) }}
+   },
+   {type:'light',
+    name:'クーゲルシュライバー',
+    bomb:'poison',
+    spec:{
+      ch: {damage:28,   frame:3, range:2.2, charge_time:50, move:0.5, ink:0.3125},
+      fc: {damage:30,   frame:6, range:4.8, charge_time:100, move:0.5, ink:0.625}
+    },
+    special:{point:200, id:'jetpack'},
+    main_spec_up:{type:'damage', calc:function(gp){ return 1+0.1*(0.033*gp-0.00027*gp**2) }}
+   },
+   {type:'heavy',
+    name:'ハイドラント',
+    bomb:'robot',
+    spec:{
+      ch: {damage:32,   frame:4, range:4.8, charge_time:120, move:0.6, ink:0.57},
+      fc: {damage:40,   frame:4, range:4.8, charge_time:150, move:0.6, ink:0.57},
+      curve: {damage:16,frame:4, range:4.8, charge_time:120, move:0.6, ink:0.57}
+    },
+    special:{point:170, id:'landing'},
+    main_spec_up:{type:'damage', calc:{
+      ch: function(gp) {return 1+0.1*(0.033*gp-0.00027*gp**2)},
+      fc: function(gp) {return 1+0.2*(0.033*gp-0.00027*gp**2)},
+      curve: function(gp) {return 1+0.099*(0.033*gp-0.00027*gp**2)}
+    }}
+   },
+   {type:'light',
+    name:'ソイチューバー',
+    bomb:'cuban',
+    spec:{
+      min: {damage:40,  frame:4, range:4.2, charge_time:0,  move:0.3, ink:15},
+      max: {damage:140, frame:4, range:4.2, charge_time:75, move:0.3, ink:15},
+    },
+    special:{point:160, id:'landing'},
+    main_spec_up:{type:'damage', calc:function(gp){return 1+0.15*(0.033*gp-0.00027*gp**2)}}
+   },
+   {type:'light',
+    name:'14式竹筒銃',
+    bomb:'carling',
+    spec:{
+      min: {damage:30, frame:4, range:4.3, charge_time:0,  move:0.6, ink:7},
+      max: {damage:85, frame:4, range:4.3, charge_time:20, move:0.6, ink:7},
+    },
+    special:{point:180, id:'multi'},
+    main_spec_up:{type:'damage', calc:function(gp){return 1+0.2*(0.033*gp-0.00027*gp**2)}}
+   },
+   {type:'light',
+    name:'スプラチャージャー',
+    bomb:'splash',
+    spec:{
+      min: {damage:40, frame:4, range:4.3, charge_time:0,   move:0.2, ink:18},
+      max: {damage:160, frame:4, range:4.3, charge_time:60, move:0.2, ink:18},
+    },
+    special:{point:210, id:'hyper'},
+    main_spec_up:{type:'damage', calc:function(gp){return 1+0.2*(0.033*gp-0.00027*gp**2)}}
+   },
+   {type:'light',
+    name:'カーボンローラー',
+    bomb:'robot',
+    spec:{
+      vert: {damage:120, frame:4, range:1.3, charge_time:0, move:0, ink:4.5},
+      hori: {damage:100, frame:4, range:0.9, charge_time:0, move:0, ink:4.5},
+      crus: {damage:70,  frame:4, range:0, charge_time:0, move:0, ink:4.5},
+    },
+    special:{point:160, id:'rain'},
+    main_spec_up:{type:'damage', calc:function(gp){return 1+0.15*(0.033*gp-0.00027*gp**2)}}
+   },
+   {type:'light',
+    name:'ダイナモローラー',
+    bomb:'trap',
+    spec:{
+      vert: {damage:180, frame:4, range:2.5, charge_time:0, move:0, ink:18},
+      hori: {damage:180, frame:4, range:2, charge_time:0, move:0, ink:18},
+      crus: {damage:70,  frame:4, range:0,   charge_time:0, move:0, ink:18},
+    },
+    special:{point:180, id:'hyper'},
+    main_spec_up:{type:'damage', calc:function(gp){return 1+0.15*(0.033*gp-0.00027*gp**2)}}
+   },
+   {type:'light',
+    name:'スプラローラー',
+    bomb:'carling',
+    spec:{
+      vert: {damage:150,  frame:4, range:1.6, charge_time:0, move:0, ink:9},
+      hori: {damage:150,  frame:4, range:1.4, charge_time:0, move:0, ink:9},
+      crus: {damage:125,  frame:4, range:0,   charge_time:0, move:0, ink:9},
+    },
+    special:{point:180, id:'landing'},
+    main_spec_up:{type:'damage', calc:function(gp){return 1+0.15*(0.033*gp-0.00027*gp**2)**0.5849625007}}
+   },
+   {type:'light',
+    name:'ヴァリアブルローラー',
+    bomb:'shield',
+    spec:{
+      vert: {damage:150, frame:4, range:2, charge_time:0, move:0, ink:18},
+      hori: {damage:150, frame:4, range:1.4, charge_time:0, move:0, ink:18},
+      crus: {damage:125, frame:4, range:0,   charge_time:0, move:0, ink:18},
+    },
+    special:{point:180, id:'splash_pitcher'},
+    main_spec_up:{type:'damage', calc:function(gp){return 1+0.15*(0.033*gp-0.00027*gp**2)**0.5849625007}}
+   },
+];
+
 var app = new Vue({
   el: '#app',
   data: {
-    version: 'v0.0.5',
+    version: 'v0.0.5.9',
     base_url: "https://nanaaki.com/ika/?",
     message: location.search,
-    buki: {type:'light',
-            spec: {damege:35, frame:6, range:3.4, charge_time:75, move:0},
-            special:{point:180, id:'multi'}},
+    buki_list: buki,
+    buki: buki[0],
     boost: {on:false, boost_gps: {}, name:""},
     equi:{
       head:{main:{code:'F', name:'-'},sub:[{code:'F', name:'-'},{code:'F', name:'-'},{code:'F', name:'-'}]},
@@ -242,6 +435,42 @@ var app = new Vue({
     }
   },
   methods: {
+    view_spec: function(buki,gp){
+      res = [];
+      if('min' in buki.spec){
+        res.push("最小チャージ" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.min.damage) + "ダメージ");
+        res.push("最大チャージ" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.max.damage) + "ダメージ");
+        return res;
+      }
+      if('vert' in buki.spec){
+        res.push("縦振り" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.vert.damage) + "ダメージ");
+        res.push("横振り" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.hori.damage) + "ダメージ");
+        res.push("轢き" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.crus.damage) + "ダメージ");
+        return res;
+      }
+      if('single' in buki.spec){
+        res.push("単発" + this.getFloor(buki.main_spec_up.calc.single(gp)*buki.spec.single.damage) + "ダメージ");
+        res.push("連射" + this.getFloor(buki.main_spec_up.calc.auto(gp)*buki.spec.auto.damage) + "ダメージ");
+        return res;
+      }
+      if('normal' in buki.spec){
+        res.push("通常" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.normal.damage) + "ダメージ");
+        res.push("スライド後" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.slide.damage) + "ダメージ");
+        return res;
+      }
+      if('curve' in buki.spec){
+        res.push("フルチャージ" + this.getFloor(buki.main_spec_up.calc.fc(gp)*buki.spec.fc.damage) + "ダメージ");
+        res.push("半チャージ"   + this.getFloor(buki.main_spec_up.calc.ch(gp)*buki.spec.ch.damage) + "ダメージ");
+        res.push("曲射"        + this.getFloor(buki.main_spec_up.calc.curve(gp)*buki.spec.curve.damage) + "ダメージ");
+        return res;
+      }
+      if('fc' in buki.spec){
+        res.push("フルチャージ" + this.getFloor(buki.main_spec_up.calc.fc(gp)*buki.spec.fc.damage)) + "ダメージ";
+        res.push("半チャージ"   + this.getFloor(buki.main_spec_up.calc.ch(gp)*buki.spec.ch.damage)) + "ダメージ";
+        return res;
+      }
+      return [this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.damage) + "ダメージ"]
+    },
     copy_url: function(){
       var tmp = document.querySelector('#copy_data');
       tmp.select();

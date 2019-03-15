@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>スプラトゥーン2ギア計算機 v0.0.5</title>
+  <title>スプラトゥーン2ギア計算機 v0.0.5.9</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="vue.js"></script>
@@ -135,13 +135,27 @@
               </ul>
             </div>
 
+            <div class="equi_box">
+              <ul>
+                <li><div style="position:relative;float:left;">ブキ:</div></li>
+                <li>
+                <select v-model="buki">
+                    <option v-for="buki in buki_list" v-bind:value="buki">{{buki.name}}</option>
+                </select>
+                </li>
+              </ul>
+            </div>
+
             <div v-if="boost.name!=''">
               <button v-if="boost.on" v-on:click="boost.on=false">{{boost.name}}有効</button>
               <button v-else v-on:click="boost.on=true">{{boost.name}}無効</button>
             </div>
           </div>
           <div class="tile is-12 is-child box">
-            <p class="subtitle">ギアパワー振り分け</p>
+            <p class="subtitle">ギアパワー振り分け/ブキスペック</p>
+            <div>
+              <ul><li v-for="dg in view_spec(buki, gps['4'] ? gps['4'] : 0)">{{dg}}</li>
+            </div>
             <div>
               <ul>
                 <li v-for="(val, key) in gps">
@@ -149,6 +163,7 @@
                 </li>
               </ul>
             </div>
+
           </div>
         </div>
 
