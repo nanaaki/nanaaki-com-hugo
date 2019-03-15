@@ -1,5 +1,14 @@
 buki = [
+  {type:'none',
+   code:'none',
+   name:'未選択',
+   bomb:'carling',
+   spec:{damage:38, frame:5, range:1.5, charge_time:0, move:0, ink:0.8},
+   special:{point:180, id:'none'},
+   main_spec_up:{type:'damage', calc:function(gp){ return 1+0.25*(0.033*gp-0.00027*gp**2) }}
+  },
   {type:'light',
+   code:'bold',
    name:'ボールドマーカー',
    bomb:'carling',
    spec:{damage:38, frame:5, range:1.5, charge_time:0, move:0, ink:0.8},
@@ -7,6 +16,7 @@ buki = [
    main_spec_up:{type:'damage', calc:function(gp){ return 1+0.25*(0.033*gp-0.00027*gp**2) }}
   },
   {type:'light',
+   code:'bott',
    name:'ボトルガイザー',
    bomb:'carling',
    spec:{
@@ -20,12 +30,14 @@ buki = [
    },
    {type:'light',
     name:'プライムシューター',
+    code:'prim',
     bomb:'point',
     spec:{damage:42, frame:8, range:3.1, charge_time:0, move:0, ink:2},
     special:{point:170, id:'rain'},
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.25*(0.033*gp-0.00027*gp**2) }}
    },
    {type:'light',
+    code:'lree',
     name:'Lリールガン',
     bomb:'point',
     spec:{damage:29, frame:4, range:3.1, charge_time:0, move:0, ink:1},
@@ -33,6 +45,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.3*(0.033*gp-0.00027*gp**2) }}
    },
    {type:'light',
+    code:'hree',
     name:'Hリールガン',
     bomb:'point',
     spec:{damage:29, frame:4, range:3.1, charge_time:0, move:0, ink:1},
@@ -40,6 +53,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.24*(0.033*gp-0.00027*gp**2) }}
    },
    {type:'light',
+    code:'96ga',
     name:'96ガロン',
     bomb:'sprinkler',
     spec:{damage:62, frame:12, range:3.5, charge_time:0, move:0, ink:2.5},
@@ -47,6 +61,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.25*(0.033*gp-0.00027*gp**2) }}
    },
    {type:'light',
+    code:'shar',
     name:'シャープマーカー',
     bomb:'poison',
     spec:{damage:28, frame:5, range:2.4, charge_time:0, move:0, ink:0.8},
@@ -54,6 +69,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.25*(0.033*gp-0.00027*gp**2) }}
    },
    {type:'light',
+    code:'spat',
     name:'スパッタリー',
     bomb:'beacon',
     spec:{damage:36, frame:5, range:1.9, charge_time:0, move:0, ink:0.75},
@@ -61,6 +77,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.2*(0.033*gp-0.00027*gp**2) }}
    },
    {type:'light',
+    code:'quad',
     name:'クアドラホッパー',
     bomb:'robot',
     spec:{damage:28, frame:6, range:2.5, charge_time:0, move:0, ink:0.8},
@@ -68,6 +85,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.2*(0.033*gp-0.00027*gp**2) }}
    },
    {type:'light',
+    code:'kelv',
     name:'ケルビン525',
     bomb:'robot',
     spec:{
@@ -78,6 +96,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.2*(0.033*gp-0.00027*gp**2) }}
    },
    {type:'light',
+    code:'spma',
     name:'スプラマニューバー',
     bomb:'quick',
     spec:{damage:36,   frame:9, range:2.6, charge_time:0, move:0, ink:1.6},
@@ -85,6 +104,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.2*(0.033*gp-0.00027*gp**2) }}
    },
    {type:'light',
+    code:'dual',
     name:'デュアルスイーパー',
     bomb:'point',
     spec:{damage:28,   frame:6, range:3.1, charge_time:0, move:0, ink:1.2},
@@ -92,6 +112,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.2*(0.033*gp-0.00027*gp**2) }}
    },
    {type:'light',
+    code:'kuge',
     name:'クーゲルシュライバー',
     bomb:'poison',
     spec:{
@@ -102,6 +123,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.1*(0.033*gp-0.00027*gp**2) }}
    },
    {type:'heavy',
+    code:'hydr',
     name:'ハイドラント',
     bomb:'robot',
     spec:{
@@ -117,6 +139,7 @@ buki = [
     }}
    },
    {type:'light',
+    code:'soyc',
     name:'ソイチューバー',
     bomb:'cuban',
     spec:{
@@ -127,6 +150,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){return 1+0.15*(0.033*gp-0.00027*gp**2)}}
    },
    {type:'light',
+    code:'14sk',
     name:'14式竹筒銃',
     bomb:'carling',
     spec:{
@@ -137,6 +161,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){return 1+0.2*(0.033*gp-0.00027*gp**2)}}
    },
    {type:'light',
+    code:'spch',
     name:'スプラチャージャー',
     bomb:'splash',
     spec:{
@@ -147,6 +172,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){return 1+0.2*(0.033*gp-0.00027*gp**2)}}
    },
    {type:'light',
+    code:'carb',
     name:'カーボンローラー',
     bomb:'robot',
     spec:{
@@ -158,6 +184,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){return 1+0.15*(0.033*gp-0.00027*gp**2)}}
    },
    {type:'light',
+    code:'dyna',
     name:'ダイナモローラー',
     bomb:'trap',
     spec:{
@@ -169,6 +196,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){return 1+0.15*(0.033*gp-0.00027*gp**2)}}
    },
    {type:'light',
+    code:'spro',
     name:'スプラローラー',
     bomb:'carling',
     spec:{
@@ -180,6 +208,7 @@ buki = [
     main_spec_up:{type:'damage', calc:function(gp){return 1+0.15*(0.033*gp-0.00027*gp**2)**0.5849625007}}
    },
    {type:'light',
+    code:'vari',
     name:'ヴァリアブルローラー',
     bomb:'shield',
     spec:{
@@ -309,7 +338,7 @@ var app = new Vue({
       var tmp = this.equi.head.main.code + this.equi.body.sub[0].code + this.equi.body.sub[1].code + this.equi.body.sub[2].code;
       tmp    += ("-" + this.equi.body.main.code + this.equi.body.sub[0].code + this.equi.body.sub[1].code + this.equi.body.sub[2].code);
       tmp    += ("-" + this.equi.leg.main.code + this.equi.leg.sub[0].code + this.equi.leg.sub[1].code + this.equi.leg.sub[2].code);
-      return this.base_url+tmp;
+      return this.base_url+tmp+"-"+this.buki.code;
     },
     exportTweetCard: function(){
       var tmp = this.equi.head.main.code + this.equi.body.sub[0].code + this.equi.body.sub[1].code + this.equi.body.sub[2].code;
@@ -318,7 +347,6 @@ var app = new Vue({
       return "https://us-central1-nanadon-213503.cloudfunctions.net/generate_gps_image?g="+tmp+"&v=0.02";
     },
     exportTweet: function(){
-
       var tmp = "http://twitter.com/share?"+ encodeURI("text=&hashtags=splatoon_gear&url=") + encodeURIComponent(this.exportEqui);
       return tmp;
     },
@@ -503,6 +531,7 @@ var app = new Vue({
       var head = codes[0].split("");
       var body = codes[1].split("");
       var leg  = codes[2].split("");
+      var buki = codes[3];
       var tt = this;
 
       this.equi.head.main = this.gear.filter(function(val){return val.code == head[0]})[0];
@@ -519,6 +548,7 @@ var app = new Vue({
       this.equi.leg.sub   = leg.slice(1).map(function(val){
         return tt.gear.filter(function(fval){return fval.code == val})[0]
       });
+      this.buki = this.buki_list(filter(function(val){return val.code == buki}));
     }
   }
 })
