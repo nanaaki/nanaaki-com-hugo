@@ -464,8 +464,8 @@ var app = new Vue({
   },
   methods: {
     convert_damage_cap: function(damage,calc,gp){
-      if(Math.floor(100/(calc(gp)*damage)) != Math.floor(100/damage)){
-        return this.getFloor(100/(Math.floor(100/damage))-0.01)+"(疑似"+Math.floor(100/damage)-1+"確)";
+      if(Math.floor(100/(calc(gp)*damage)) != Math.floor(100/damage) && damage < 100){
+        return this.getFloor(100/(Math.floor(100/damage))-0.001)+"(疑似"+(Math.floor(100/damage))+"確)";
       }else{
         return this.getFloor(calc(gp)*damage);
       }
