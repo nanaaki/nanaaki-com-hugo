@@ -99,7 +99,7 @@ buki = [
     code:'spma',
     name:'スプラマニューバー',
     bomb:'quick',
-    spec:{damage:36,   frame:9, range:2.6, charge_time:0, move:0, ink:1.6},
+    spec:{damage:30,   frame:9, range:2.6, charge_time:0, move:0, ink:1.6},
     special:{point:180, id:'jetpack'},
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.2*(0.033*gp-0.00027*gp**2) }}
    },
