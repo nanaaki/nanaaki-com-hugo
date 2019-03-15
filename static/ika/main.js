@@ -463,41 +463,48 @@ var app = new Vue({
     }
   },
   methods: {
+    convert_damage_cap: function(damage,calc,gp){
+      if(Math.floor(100/(calc(gp)*damage)) != Math.floor(100/damage)){
+        return this.getFloor(100/(Math.floor(100/damage))-0.01)+"(疑似"+Math.floor(100/(calc(gp)*damage))+"確)";
+      }else{
+        return this.getFloor(calc(gp)*damage);
+      }
+    },
     view_spec: function(buki,gp){
       res = [];
       if('min' in buki.spec){
-        res.push("最小チャージ" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.min.damage) + "ダメージ");
-        res.push("最大チャージ" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.max.damage) + "ダメージ");
+        res.push("最小チャージ" + this.convert_damage_cap(buki.spec.min.damage, buki.main_spec_up.calc, gp) + "ダメージ");
+        res.push("最大チャージ" + this.convert_damage_cap(buki.spec.max.damage, buki.main_spec_up.calc, gp) + "ダメージ");
         return res;
       }
       if('vert' in buki.spec){
-        res.push("縦振り" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.vert.damage) + "ダメージ");
-        res.push("横振り" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.hori.damage) + "ダメージ");
-        res.push("轢き" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.crus.damage) + "ダメージ");
+        res.push("縦振り" + this.convert_damage_cap(buki.spec.vert.damage, buki.main_spec_up.calc,gp) + "ダメージ");
+        res.push("横振り" + this.convert_damage_cap(buki.spec.hori.damage, buki.main_spec_up.calc,gp) + "ダメージ");
+        res.push("轢き" + this.convert_damage_cap(buki.spec.crus.damage,   buki.main_spec_up.calc,gp) + "ダメージ");
         return res;
       }
       if('single' in buki.spec){
-        res.push("単発" + this.getFloor(buki.main_spec_up.calc.single(gp)*buki.spec.single.damage) + "ダメージ");
-        res.push("連射" + this.getFloor(buki.main_spec_up.calc.auto(gp)*buki.spec.auto.damage) + "ダメージ");
+        res.push("単発" + this.convert_damage_cap(buki.spec.single.damage, buki.main_spec_up.calc.single, gp) + "ダメージ");
+        res.push("連射" + this.convert_damage_cap(buki.spec.auto.damage, buki.main_spec_up.calc.auto, gp) + "ダメージ");
         return res;
       }
       if('normal' in buki.spec){
-        res.push("通常" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.normal.damage) + "ダメージ");
-        res.push("スライド後" + this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.slide.damage) + "ダメージ");
+        res.push("通常" + this.convert_damage_cap(buki.spec.normal.damage, buki.main_spec_up.calc, gp) + "ダメージ");
+        res.push("スライド後" + this.convert_damage_cap(buki.spec.slide.damage, buki.main_spec_up.calc, gp) + "ダメージ");
         return res;
       }
       if('curve' in buki.spec){
-        res.push("フルチャージ" + this.getFloor(buki.main_spec_up.calc.fc(gp)*buki.spec.fc.damage) + "ダメージ");
-        res.push("半チャージ"   + this.getFloor(buki.main_spec_up.calc.ch(gp)*buki.spec.ch.damage) + "ダメージ");
-        res.push("曲射"        + this.getFloor(buki.main_spec_up.calc.curve(gp)*buki.spec.curve.damage) + "ダメージ");
+        res.push("フルチャージ" + this.convert_damage_cap(buki.spec.fc.damage,buki.main_spec_up.calc.fc,gp) + "ダメージ");
+        res.push("半チャージ"   + this.convert_damage_cap(buki.spec.ch.damage,buki.main_spec_up.calc.ch,gp) + "ダメージ");
+        res.push("曲射"        + this.convert_damage_cap(buki.spec.curve.damage,buki.main_spec_up.calc.curve,gp) + "ダメージ");
         return res;
       }
       if('fc' in buki.spec){
-        res.push("フルチャージ" + this.getFloor(buki.main_spec_up.calc.fc(gp)*buki.spec.fc.damage)) + "ダメージ";
-        res.push("半チャージ"   + this.getFloor(buki.main_spec_up.calc.ch(gp)*buki.spec.ch.damage)) + "ダメージ";
+        res.push("フルチャージ" + this.convert_damage_cap(buki.spec.fc.damage,buki.main_spec_up.calc.fc,gp) + "ダメージ");
+        res.push("半チャージ"   + this.convert_damage_cap(buki.spec.ch.damage,buki.main_spec_up.calc.ch,gp) + "ダメージ");
         return res;
       }
-      return [this.getFloor(buki.main_spec_up.calc(gp)*buki.spec.damage) + "ダメージ"]
+      return [this.convert_damage_cap(buki.spec.damage,buki.main_spec_up.calc,gp) + "ダメージ"]
     },
     copy_url: function(){
       var tmp = document.querySelector('#copy_data');
@@ -548,7 +555,7 @@ var app = new Vue({
       this.equi.leg.sub   = leg.slice(1).map(function(val){
         return tt.gear.filter(function(fval){return fval.code == val})[0]
       });
-      this.buki = this.buki_list(filter(function(val){return val.code == buki}));
+      this.buki = this.buki_list.filter(function(val){return val.code == buki})[0];
     }
   }
 })
