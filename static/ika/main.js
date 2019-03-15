@@ -341,7 +341,7 @@ var app = new Vue({
       return this.base_url+tmp+"-"+this.buki.code;
     },
     exportTweetCard: function(){
-      var tmp = this.equi.head.main.code + this.equi.body.sub[0].code + this.equi.body.sub[1].code + this.equi.body.sub[2].code;
+      var tmp = this.equi.head.main.code + this.equi.head.sub[0].code + this.equi.head.sub[1].code + this.equi.head.sub[2].code;
       tmp    += ("-" + this.equi.body.main.code + this.equi.body.sub[0].code + this.equi.body.sub[1].code + this.equi.body.sub[2].code);
       tmp    += ("-" + this.equi.leg.main.code + this.equi.leg.sub[0].code + this.equi.leg.sub[1].code + this.equi.leg.sub[2].code);
       return "https://us-central1-nanadon-213503.cloudfunctions.net/generate_gps_image?g="+tmp+"&v=0.02";
