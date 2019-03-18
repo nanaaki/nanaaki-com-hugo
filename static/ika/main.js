@@ -48,7 +48,7 @@ buki = [
     code:'hree',
     name:'Hリールガン',
     bomb:'point',
-    spec:{damage:29, frame:4, range:3.1, charge_time:0, move:0, ink:1},
+    spec:{damage:41, frame:4, range:3.1, charge_time:0, move:0, ink:1},
     special:{point:170, id:'sphere'},
     main_spec_up:{type:'damage', calc:function(gp){ return 1+0.24*(0.033*gp-0.00027*gp**2) }}
    },
@@ -464,8 +464,8 @@ var app = new Vue({
   },
   methods: {
     convert_damage_cap: function(damage,calc,gp){
-      if(Math.floor(100/(calc(gp)*damage)) != Math.floor(100/damage) && damage < 100){
-        return this.getFloor(100/(Math.floor(100/damage))-0.001)+"(疑似"+(Math.floor(100/damage))+"確)";
+      if(Math.floor(100/(calc(gp)*damage+0.1)) != Math.floor(100/damage) && damage < 100){
+        return this.getFloor(100/(Math.floor(100/damage))-0.0001)+"(疑似"+(Math.floor(100/damage))+"確)";
       }else{
         return this.getFloor(calc(gp)*damage);
       }
