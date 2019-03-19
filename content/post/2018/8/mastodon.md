@@ -28,7 +28,7 @@ sendgridの設定とかは[https://cloud.google.com/compute/docs/tutorials/sendi
 Compute Engineの1インスタンスで何も考えずdockerでやっていく感じ。OSは適当にUbuntuでいいんじゃない？
 
 色々手順書こうと考えたけど公式のドキュメントを読むほうが多分いい
-[https://github.com/tootsuite/documentation](https://github.com/tootsuite/documentation)
+[https://github.com/tootsuite/mastodon](https://github.com/tootsuite/mastodon)
 
 細かいconfが変わってたりするググって出てくる日本語のブログが古い場合も多い。
 cronでデイリータスク実行させてるとか(現状はsidekiqで処理されるので不要)
