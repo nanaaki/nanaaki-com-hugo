@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+  </head>
+  <body>
+    <!--reference: http://upload.wikimedia.org/wikipedia/commons/9/93/Game_boy_pocket.png-->
+    <div id="gameboy_shell">
+      <div id="on_off">@</div>
+      <div id="screen_cover">
+        <div id="power">
+          <div class="two_column">
+            POWER<div id="power_light">●</div>
+          </div>
+        </div>
+        <div id="canvas_container" >
+          <canvas id="mainCanvas" width='160px' height='144px'>No Canvas Support</canvas>
+        </div>
+        <div>
+        </div>
+      </div>
+      <div id="d_pad">
+        <div id="d_pad_up" style="padding-left:1em">
+          <div id="arrow_up" data-key-zone="up">↑</div>
+        </div>
+        <div id="d_pad_left_right">
+          <div id="d_pad_left">
+            <span id="arrow_left" data-key-zone="left">←</span><span id="arrow_right" data-key-zone="right" style="padding-left:1em">→</span>
+            <span id="a_button_group" class="button_group" data-key-zone="a" style="padding-left:4em">A</span>
+          </div>
+        </div>
+        <div id="d_pad_down">
+          <span id="arrow_down" data-key-zone="down" style="padding-left:1em">↓</span>
+          <span id="b_button_group" class="button_group" data-key-zone="b" style="padding-left:3em">B</span>
+
+        </div>
+      </div>
+      <div id="select_button_group" class="button_group" data-key-zone="select">
+        <div class="flat_button"></div>
+        SELECT
+      </div>
+      <div id="start_button_group" class="button_group" data-key-zone="start">
+        <div class="flat_button"></div>
+        START
+      </div>
+    </div>
+    <!--<script src="js/other/windowStack.js"></script>-->
+    <!--<script src="js/other/terminal.js"></script>-->
+    <script src="js/other/mobile.js"></script>
+    <script src="js/other/base64.js"></script>
+    <script src="js/other/json2.js"></script>
+    <script src="js/other/swfobject.js"></script>
+    <script src="js/other/resampler.js"></script>
+    <script src="js/other/XAudioServer.js"></script>
+    <script src="js/other/resize.js"></script>
+    <script src="js/GameBoyCore.js"></script>
+    <script src="js/GameBoyIO.js"></script>
+  </body>
+</html>
