@@ -29,7 +29,6 @@ Farming 採掘にあたる部分。Plottingで作られた畑的なファイル�
 * NVMEのlocal SSDが必要(GCPだと1個あたり375GBなので1個)
 * 国はどこでもいい
 * Ubuntu
-* 完成したファイルをcloud storageに投げ込みたいのでgcsfuse使うのでscopeにフルアクセス追加
 
 >gcloud compute instances create chia-1 --zone us-central1-a --machine-type n2d-standard-2 --image-project ubuntu-os-cloud --image-family ubuntu-1804-lts --local-ssd interface=NVME --scopes https://www.googleapis.com/auth/devstorage.full_control
 
@@ -39,24 +38,12 @@ ssh入る
 
 >gcloud compute ssh chia-1 --zone us-central1-a
 
-gcsfuseの設定。バケットとかは事前に作っとく
-
->export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
->echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
->curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
->sudo apt-get update
->sudo apt-get upgrade -y
->sudo apt-get install gcsfuse
->mkdir res
->sudo gcsfuse res_chia res
->sudo gcsfuse -o allow_other --file-mode=777 --dir-mode=777 res_chia ~/res
-
 plotting用の一時ファイル置き場をNVMEでやるためにフォーマット。ext4よりXFSのが処理早くなるとか諸説ある。
 
 sudo mkfs.ext4 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/disk/by-id/google-local-nvme-ssd-0 
 mkdir tmp
 sudo mount /dev/disk/by-id/google-local-nvme-ssd-0 ~/tmp
-sudo chmod 777 ~/tmp
+sudo chmod 666 ~/tmp
 
 chiaのインストール。GUIは使わないし入れない。
 
@@ -75,3 +62,6 @@ chiaでの作業
 あとは待つ。
 これ、実際GCPで1つPlottingをするのにコスト自体は2ドル程度、しかし一番の問題ができた100GBのFarmをローカルとかに持ってくる時に100GBぐらいの転送が必要でざっくり10ドルぐらいかかる。
 GCP上でFarmingも完結させるかDigitalOceanあたりを検討中。
+
+追記
+GCS Fuseとかでやったら失敗した。色々やって個人的な最適解見つけたけどなんかHDD買い占めたりとか起きてるのでみんな頑張ってね。
